@@ -1,5 +1,6 @@
 export const APPLY_NUMBER = "APPLY_NUMBER";
 export const CREATE_NUM = 'CREATE_NUM'
+export const SECOND_NUM = 'SECOND_NUM'
 
 export const CHANGE_OPERATION = "CHANGE_OPERATION";
 export const CLEAR = 'CLEAR_DISPLAY'
@@ -13,6 +14,10 @@ export const applyNumber = (number) => {
 
 export const applyCreateNum = (num) => {
    return ({ type: CREATE_NUM, payload: num })
+}
+
+export const applySecondNum = (num) => {
+   return ({ type: SECOND_NUM, payload: num })
 }
 
 export const applyOperator = (operator) => {

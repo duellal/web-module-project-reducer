@@ -10,23 +10,16 @@ import reducer, { initialState } from '../reducers/stretchReducer'
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  const handleNumBtns = (e) => {
-    if (state.operation === null) {
-      dispatch(appleCreateNum(e.target.value))
-    }
-
-  }
-
   const handleCreateNum = (e) => {
     dispatch(applyCreateNum(e.target.value))
   }
 
-  const handleApplyNum = (e) => {
-    dispatch(applyNumber(e.target.value))
-  }
-
   const handleApplyOp = (e) => {
     dispatch(applyOperator(e.target.value))
+  }
+
+  const handleEquals = () => {
+    //Need to make handle function for equals btn when displayValue, operator, + secondNum are all in the initialState
   }
 
   const handleClear = () => {
