@@ -5,7 +5,7 @@ import './App.css';
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
 import reducer, { initialState } from '../reducers/index';
-import { addOne, applyNumber, applyOperator, applyClear } from '../actions/index'
+import { addOne, applyNumber, applyOperator, applyClear, applyChangeMem } from '../actions/index'
 
 function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
@@ -28,6 +28,10 @@ function App() {
     dispatch(applyClear())
   }
 
+  const handleChangeMem = () => {
+    dispatch(applyChangeMem())
+  }
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -45,7 +49,7 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={"M+"} />
+              <CalcButton value={"M+"} onClick={handleChangeMem} />
               <CalcButton value={"MR"} />
               <CalcButton value={"MC"} />
             </div>
