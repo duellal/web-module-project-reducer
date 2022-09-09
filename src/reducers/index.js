@@ -1,4 +1,4 @@
-import { ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION } from './../actions';
+import { ADD_ONE, APPLY_NUMBER, CHANGE_OPERATION, CLEAR } from './../actions';
 
 export const initialState = {
     total: 0,
@@ -37,6 +37,11 @@ const reducer = (state, action) => {
                 operation: action.payload
             });
 
+        case (CLEAR):
+            return ({
+                ...state,
+                total: 0
+            })
         default:
             return state;
     }
