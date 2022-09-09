@@ -12,8 +12,12 @@ function App() {
 
   console.log('State:', state)
 
-  const handleAddOne = (e) => {
-    dispatch(addOne(e.target.value))
+  // const handleAddOne = (e) => {
+  //   dispatch(addOne(e.target.value))
+  // }
+
+  const handleApplyNum = (e) => {
+    dispatch(applyNumber(parseInt(e.target.value)))
   }
 
   return (
@@ -39,21 +43,21 @@ function App() {
             </div>
 
             <div className="row">
-              <CalcButton value={1} onClick={handleAddOne} />
-              <CalcButton value={2} />
-              <CalcButton value={3} />
+              <CalcButton value={1} onClick={handleApplyNum} />
+              <CalcButton value={2} onClick={handleApplyNum} />
+              <CalcButton value={3} onClick={handleApplyNum} />
             </div>
 
             <div className="row">
-              <CalcButton value={4} />
-              <CalcButton value={5} />
-              <CalcButton value={6} />
+              <CalcButton value={4} onClick={handleApplyNum} />
+              <CalcButton value={5} onClick={handleApplyNum} />
+              <CalcButton value={6} onClick={handleApplyNum} />
             </div>
 
             <div className="row">
-              <CalcButton value={7} />
-              <CalcButton value={8} />
-              <CalcButton value={9} />
+              <CalcButton value={7} onClick={handleApplyNum} />
+              <CalcButton value={8} onClick={handleApplyNum} />
+              <CalcButton value={9} onClick={handleApplyNum} />
             </div>
 
             <div className="row">
