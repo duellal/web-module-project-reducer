@@ -1,6 +1,7 @@
 export const CALC_NUM = "CALC_NUM";
 export const CREATE_NUM = 'CREATE_NUM'
 export const SECOND_NUM = 'SECOND_NUM'
+export const DECIMAL = 'DECIMAL'
 
 export const CHANGE_OPERATION = "CHANGE_OPERATION";
 export const CLEAR = 'CLEAR_DISPLAY'
@@ -10,6 +11,10 @@ export const MEMORY_RECALL = "MEMORY_RECALL"
 
 export const applyCalc = () => {
    return ({ type: CALC_NUM });
+}
+
+export const applyDecimal = (dot) => {
+   return ({ type: DECIMAL, payload: dot })
 }
 
 export const applyCreateNum = (num) => {

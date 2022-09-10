@@ -4,7 +4,7 @@ import './App.css';
 
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
-import { applyCreateNum, applyOperator, applyClear, applyChangeMem, applyClearMem, applyMemoryRecall, applyCalc } from '../actions/stretchActions'
+import { applyCreateNum, applyOperator, applyClear, applyChangeMem, applyClearMem, applyMemoryRecall, applyCalc, applyDecimal } from '../actions/stretchActions'
 import reducer, { initialState } from '../reducers/stretchReducer'
 
 function App() {
@@ -14,12 +14,15 @@ function App() {
     dispatch(applyCreateNum(e.target.value))
   }
 
+  const handleDecimal = (e) => {
+    dispatch(applyDecimal(e.target.value))
+  }
+
   const handleApplyOp = (e) => {
     dispatch(applyOperator(e.target.value))
   }
 
   const handleEquals = () => {
-    //Need to make handle function for equals btn when displayValue, operator, + secondNum are all in the initialState
     dispatch(applyCalc())
   }
 
@@ -35,7 +38,7 @@ function App() {
     dispatch(applyClearMem())
   }
 
-  const handleMemRecall = (e) => {
+  const handleMemRecall = () => {
     const num = state.memory
     dispatch(applyMemoryRecall(parseInt(num)))
   }
@@ -87,7 +90,7 @@ function App() {
             <div className="row">
               <CalcButton value={"CE"} onClick={handleClear} />
               <CalcButton value={0} onClick={handleCreateNum} />
-              <CalcButton value={'.'} onClick={handleCreateNum} />
+              <CalcButton value={"."} onClick={handleDecimal} />
               <CalcButton value={"="} onClick={handleEquals} />
 
             </div>

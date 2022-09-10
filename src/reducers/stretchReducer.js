@@ -1,4 +1,4 @@
-import { CALC_NUM, CREATE_NUM, CHANGE_OPERATION, CLEAR, CHANGE_MEM, CLEAR_MEM, MEMORY_RECALL } from './../actions/stretchActions';
+import { CALC_NUM, CREATE_NUM, CHANGE_OPERATION, CLEAR, CHANGE_MEM, CLEAR_MEM, MEMORY_RECALL, DECIMAL } from './../actions/stretchActions';
 
 export const initialState = {
    displayValue: 0,
@@ -20,6 +20,14 @@ const calculateResult = (num1, num2, operation) => {
    }
 }
 
+const addDecimal = (displayValue, dot) => {
+   if (displayValue != dot) {
+      return (
+         displayValue + dot
+      )
+   }
+}
+
 const reducer = (state, action) => {
    switch (action.type) {
       case (CREATE_NUM):
@@ -35,6 +43,12 @@ const reducer = (state, action) => {
                displayValue: parseInt(state.displayValue + action.payload)
             })
          }
+
+      case (DECIMAL):
+         return ({
+            ...state,
+            displayValue: addDecimal(state.displayValue, action.payload)
+         })
 
       case (CALC_NUM):
          return ({
