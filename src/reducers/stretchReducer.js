@@ -1,9 +1,9 @@
-import { APPLY_NUMBER, CREATE_NUM, CHANGE_OPERATION, CLEAR, CHANGE_MEM, CLEAR_MEM, MEMORY_RECALL, SECOND_NUM } from './../actions/stretchActions';
+import { CALC_NUM, CREATE_NUM, CHANGE_OPERATION, CLEAR, CHANGE_MEM, CLEAR_MEM, MEMORY_RECALL } from './../actions/stretchActions';
 
 export const initialState = {
    displayValue: 0,
    operator: null,
-   secondNum: null,
+   secondNum: 0,
    memory: 0
 }
 
@@ -14,21 +14,29 @@ const calculateResult = (num1, num2, operation) => {
       case ("*"):
          return num1 * num2;
       case ("-"):
-         return num1 - num2;
+         return num2 - num1;
       case ('/'):
-         return num1 / num2
+         return num2 / num1
    }
 }
 
 const reducer = (state, action) => {
    switch (action.type) {
       case (CREATE_NUM):
-         return ({
-            ...state,
-            displayValue: parseInt(state.displayValue + action.payload),
-         });
+         if (state.displayValue === 0 || (state.operator && state.secondNum != null)) {
+            return ({
+               ...state,
+               displayValue: parseInt(action.payload),
+            })
+         }
+         else {
+            return ({
+               ...state,
+               displayValue: parseInt(state.displayValue + action.payload)
+            })
+         }
 
-      case (APPLY_NUMBER):
+      case (CALC_NUM):
          return ({
             ...state,
             displayValue: calculateResult(state.displayValue, state.secondNum, state.operator)
@@ -64,7 +72,7 @@ const reducer = (state, action) => {
       case (MEMORY_RECALL):
          return ({
             ...state,
-            total: calculateResult(state.displayValue, action.payload, state.operator)
+            displayValue: calculateResult(state.displayValue, action.payload, state.operator)
          })
 
       default:

@@ -1,4 +1,4 @@
-export const APPLY_NUMBER = "APPLY_NUMBER";
+export const CALC_NUM = "CALC_NUM";
 export const CREATE_NUM = 'CREATE_NUM'
 export const SECOND_NUM = 'SECOND_NUM'
 
@@ -8,8 +8,8 @@ export const CHANGE_MEM = 'CHANGE_MEMORY'
 export const CLEAR_MEM = "CLEAR_MEMORY"
 export const MEMORY_RECALL = "MEMORY_RECALL"
 
-export const applyNumber = (number) => {
-   return ({ type: APPLY_NUMBER, payload: number });
+export const applyCalc = () => {
+   return ({ type: CALC_NUM });
 }
 
 export const applyCreateNum = (num) => {
@@ -37,6 +37,5 @@ export const applyClearMem = () => {
 }
 
 export const applyMemoryRecall = (memory) => {
-   console.log(memory)
    return ({ type: MEMORY_RECALL, payload: memory })
 }

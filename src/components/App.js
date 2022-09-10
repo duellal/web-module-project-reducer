@@ -4,7 +4,7 @@ import './App.css';
 
 import TotalDisplay from './TotalDisplay';
 import CalcButton from './CalcButton';
-import { applyCreateNum, applyOperator, applyClear, applyChangeMem, applyClearMem, applyMemoryRecall, applyNumber } from '../actions/stretchActions'
+import { applyCreateNum, applyOperator, applyClear, applyChangeMem, applyClearMem, applyMemoryRecall, applyCalc } from '../actions/stretchActions'
 import reducer, { initialState } from '../reducers/stretchReducer'
 
 function App() {
@@ -20,6 +20,7 @@ function App() {
 
   const handleEquals = () => {
     //Need to make handle function for equals btn when displayValue, operator, + secondNum are all in the initialState
+    dispatch(applyCalc())
   }
 
   const handleClear = () => {
@@ -35,8 +36,8 @@ function App() {
   }
 
   const handleMemRecall = (e) => {
-    e.target.value = state.memory
-    dispatch(applyMemoryRecall(parseInt(e.target.value)))
+    const num = state.memory
+    dispatch(applyMemoryRecall(parseInt(num)))
   }
 
   return (
@@ -59,36 +60,40 @@ function App() {
               <CalcButton value={"M+"} onClick={handleChangeMem} />
               <CalcButton value={"MR"} onClick={handleMemRecall} />
               <CalcButton value={"MC"} onClick={handleClearMem} />
-              <CalcButton value={"="} onClick={null} />
+              <CalcButton value={"+"} onClick={handleApplyOp} />
             </div>
 
             <div className="row">
               <CalcButton value={1} onClick={handleCreateNum} />
               <CalcButton value={2} onClick={handleCreateNum} />
               <CalcButton value={3} onClick={handleCreateNum} />
+              <CalcButton value={"-"} onClick={handleApplyOp} />
             </div>
 
             <div className="row">
               <CalcButton value={4} onClick={handleCreateNum} />
               <CalcButton value={5} onClick={handleCreateNum} />
               <CalcButton value={6} onClick={handleCreateNum} />
+              <CalcButton value={"*"} onClick={handleApplyOp} />
             </div>
 
             <div className="row">
               <CalcButton value={7} onClick={handleCreateNum} />
               <CalcButton value={8} onClick={handleCreateNum} />
               <CalcButton value={9} onClick={handleCreateNum} />
-            </div>
-
-            <div className="row">
-              <CalcButton value={"+"} onClick={handleApplyOp} />
-              <CalcButton value={"-"} onClick={handleApplyOp} />
-              <CalcButton value={"*"} onClick={handleApplyOp} />
               <CalcButton value={"/"} onClick={handleApplyOp} />
             </div>
 
-            <div className="row ce_button">
+            <div className="row">
               <CalcButton value={"CE"} onClick={handleClear} />
+              <CalcButton value={0} onClick={handleCreateNum} />
+              <CalcButton value={'.'} onClick={handleCreateNum} />
+              <CalcButton value={"="} onClick={handleEquals} />
+
+            </div>
+
+            <div className="row ce_button">
+
             </div>
 
           </form>
