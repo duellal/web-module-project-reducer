@@ -11,6 +11,7 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleCreateNum = (e) => {
+    console.log('Value:', e.target.value)
     dispatch(applyCreateNum(e.target.value))
   }
 
@@ -40,7 +41,7 @@ function App() {
 
   const handleMemRecall = () => {
     const num = state.memory
-    dispatch(applyMemoryRecall(parseInt(num)))
+    dispatch(applyMemoryRecall(parseFloat(num)))
   }
 
   return (
@@ -55,7 +56,7 @@ function App() {
 
             <TotalDisplay value={state.displayValue} />
             <div className="row details">
-              <span id="operation"><b>Operation:</b> {state.operation}</span>
+              <span id="operation"><b>Operation:</b> {state.operator}</span>
               <span id="memory"><b>Memory:</b> {state.memory} </span>
             </div>
 

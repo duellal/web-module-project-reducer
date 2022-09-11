@@ -3,7 +3,7 @@ import { CALC_NUM, CREATE_NUM, CHANGE_OPERATION, CLEAR, CHANGE_MEM, CLEAR_MEM, M
 export const initialState = {
    displayValue: 0,
    operator: null,
-   secondNum: 0,
+   secondNum: null,
    memory: 0
 }
 
@@ -21,7 +21,12 @@ const calculateResult = (num1, num2, operation) => {
 }
 
 const addDecimal = (displayValue, dot) => {
-   if (displayValue != dot) {
+   if (displayValue.toString().includes(dot)) {
+      return (
+         displayValue
+      )
+   }
+   else {
       return (
          displayValue + dot
       )
@@ -29,18 +34,18 @@ const addDecimal = (displayValue, dot) => {
 }
 
 const reducer = (state, action) => {
+   // console.log('Display Value:', state.displayValue)
+   // console.log('Operator:', state.operator)
+   // console.log('Second Value:', state.secondNum)
+   // console.log('Memory:', state.memory)
+
    switch (action.type) {
       case (CREATE_NUM):
-         if (state.displayValue === 0 || (state.operator && state.secondNum != null)) {
+         if (state.displayValue === 0 || (state.operator && state.secondNum != null)
+         ) {
             return ({
                ...state,
-               displayValue: parseInt(action.payload),
-            })
-         }
-         else {
-            return ({
-               ...state,
-               displayValue: parseInt(state.displayValue + action.payload)
+               displayValue: parseFloat(action.payload)
             })
          }
 
@@ -60,7 +65,7 @@ const reducer = (state, action) => {
          return ({
             ...state,
             operator: action.payload,
-            secondNum: state.displayValue
+            secondNum: parseFloat(state.displayValue)
          });
 
       case (CLEAR):
