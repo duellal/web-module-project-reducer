@@ -34,11 +34,6 @@ const addDecimal = (displayValue, dot) => {
 }
 
 const reducer = (state, action) => {
-   // console.log('Display Value:', state.displayValue)
-   // console.log('Operator:', state.operator)
-   // console.log('Second Value:', state.secondNum)
-   // console.log('Memory:', state.memory)
-
    switch (action.type) {
       case (CREATE_NUM):
          if (state.displayValue === 0 || (state.operator && state.secondNum != null)
@@ -65,7 +60,8 @@ const reducer = (state, action) => {
          return ({
             ...state,
             operator: action.payload,
-            secondNum: parseFloat(state.displayValue)
+            secondNum: parseFloat(state.displayValue),
+            displayValue: parseFloat(state.displayValue)
          });
 
       case (CLEAR):

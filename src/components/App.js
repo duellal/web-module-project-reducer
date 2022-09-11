@@ -11,7 +11,6 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState)
 
   const handleCreateNum = (e) => {
-    console.log('Value:', e.target.value)
     dispatch(applyCreateNum(e.target.value))
   }
 
