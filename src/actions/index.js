@@ -32,6 +32,5 @@ export const applyClearMem = () => {
 }
 
 export const applyMemoryRecall = (memory) => {
-    console.log(memory)
     return ({ type: MEMORY_RECALL, payload: memory })
 }
